@@ -3,10 +3,10 @@ join:
   # 开关
   enable: false
   # 消息格式
-  format: "[<green>+</green>]<green>%player%<green>"
+  format: "[<green>+</green>]<green>%player_name%<green>"
 # 玩家退出
 quit:
   # 开关
   enable: false
   # 消息格式
-  format: "[<red>-</red>]<red>%player%<red>"
+  format: "[<red>-</red>]<red>%player_name%<red>"

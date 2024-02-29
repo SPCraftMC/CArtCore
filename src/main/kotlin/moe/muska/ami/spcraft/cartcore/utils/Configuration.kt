@@ -10,10 +10,14 @@ interface Configuration {
     class PacksConfiguration {
         class Files {
             companion object {
+                const val CONFIG = "config.yml"
                 const val WELCOME_MESSAGE = "configs/welcome_message.yml"
             }
         }
         companion object {
+            @JvmStatic
+            var CONFIG: FileConfiguration? = null
+            @JvmStatic
             var WELCOME_MESSAGE: FileConfiguration? = null
         }
     }
@@ -26,13 +30,15 @@ interface Configuration {
         fun load() {
             extract()
 
-            cs.WELCOME_MESSAGE = YamlConfiguration.loadConfiguration(File(fs.WELCOME_MESSAGE))
+            cs.CONFIG = YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.CONFIG}"))
+            cs.WELCOME_MESSAGE = YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
         }
         private fun extract() {
+            extractSingle(fs.CONFIG)
             extractSingle(fs.WELCOME_MESSAGE)
         }
         private fun extractSingle(path: String) {
-            if (!File("${CArtCore.plugin.dataFolder}/$path").exists())
+            if (!File("${instance.dataFolder}/$path").exists())
                 instance.saveResource(path, false)
         }
     }

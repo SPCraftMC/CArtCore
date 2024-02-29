@@ -35,8 +35,8 @@ class Hook {
          * @param text 原始文本
          * @return 处理后的文本
          */
-        fun translateMiniMessage(text: String): Component? {
-            return MiniMessage.get().parse(text)
+        fun translateMiniMessage(text: String): Component {
+            return MiniMessage.miniMessage().deserialize(text)
         }
     }
 

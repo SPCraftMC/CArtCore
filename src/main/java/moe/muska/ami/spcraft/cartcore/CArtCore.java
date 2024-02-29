@@ -1,5 +1,6 @@
 package moe.muska.ami.spcraft.cartcore;
 
+import moe.muska.ami.spcraft.cartcore.packs.CommandRegister;
 import moe.muska.ami.spcraft.cartcore.packs.ListenerRegister;
 import moe.muska.ami.spcraft.cartcore.utils.Configuration;
 import org.bukkit.plugin.Plugin;
@@ -14,8 +15,11 @@ public final class CArtCore extends JavaPlugin {
         // Plugin startup logic
         plugin = this;
 
+        // 加载配置
         Configuration.load();
+        // 注册监听器
         new ListenerRegister().register();
+        new CommandRegister().register();
     }
 
     @Override
