@@ -1,0 +1,6 @@
+name: CArtCore
+version: '${version}'
+main: moe.muska.ami.spcraft.cartcore.CArtCore
+api-version: '1.18'
+authors: [Muska_Ami]
+description: SPCraftMC 2.0 CloudArt Core
