@@ -1,0 +1,78 @@
+# 树木连锁
+tree:
+  # 开关
+  enable: false
+  # 连锁树叶（消耗耐久）
+  leave: false
+  # 创造模式下开启此功能
+  creative-mode-support: false
+  map:
+    # 可连锁的原木
+    logs:
+      - "WARPED_STEM"
+      - "CRIMSON_STEM"
+      - "OAK_LOG"
+      - "BIRCH_LOG"
+      - "SPRUCE_LOG"
+      - "JUNGLE_LOG"
+      - "DARK_OAK_LOG"
+      - "ACACIA_LOG"
+      - "MANGROVE_ROOTS"
+      - "MANGROVE_LOG"
+      - "CHERRY_LOG"
+    # 可连锁的树叶
+    leaves:
+      - "NETHER_WART_BLOCK"
+      - "WARPED_WART_BLOCK"
+      - "OAK_LEAVES"
+      - "BIRCH_LEAVES"
+      - "SPRUCE_LEAVES"
+      - "JUNGLE_LEAVES"
+      - "DARK_OAK_LEAVES"
+      - "ACACIA_LEAVES"
+      - "MANGROVE_LEAVES"
+      - "CHERRY_LEAVES"
+    # 可用于连锁采集树木的工具
+    tools:
+      - "NETHERITE_AXE"
+      - "DIAMOND_AXE"
+      - "GOLDEN_AXE"
+      - "IRON_AXE"
+      - "STONE_AXE"
+      - "WOODEN_AXE"
+
+# 矿石连锁
+ore:
+  # 开关
+  enable: false
+  # 创造模式下开启此功能
+  creative-mode-support: false
+  map:
+    # 可连锁的矿石
+    ores:
+      - "COAL_ORE"
+      - "COPPER_ORE"
+      - "LAPIS_ORE"
+      - "IRON_ORE"
+      - "GOLD_ORE"
+      - "REDSTONE_ORE"
+      - "DIAMOND_ORE"
+      - "EMERALD_ORE"
+      - "DEEPSLATE_COAL_ORE"
+      - "DEEPSLATE_COPPER_ORE"
+      - "DEEPSLATE_LAPIS_ORE"
+      - "DEEPSLATE_IRON_ORE"
+      - "DEEPSLATE_GOLD_ORE"
+      - "DEEPSLATE_REDSTONE_ORE"
+      - "DEEPSLATE_DIAMOND_ORE"
+      - "DEEPSLATE_EMERALD_ORE"
+      - "NETHER_GOLD_ORE"
+      - "NETHER_QUARTZ_ORE"
+    # 可用于连锁采集矿石的工具
+    tools:
+      - "NETHERITE_PICKAXE"
+      - "DIAMOND_PICKAXE"
+      - "GOLDEN_PICKAXE"
+      - "IRON_PICKAXE"
+      - "STONE_PICKAXE"
+      - "WOODEN_PICKAXE"

@@ -7,16 +7,22 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent
 
-class OnPlayerQuit: Listener {
+class OnPlayerQuit : Listener {
 
     private val config: FileConfiguration? = Configuration.PacksConfiguration.WELCOME_MESSAGE
 
     @EventHandler
     fun onPlayerQuit(e: PlayerQuitEvent) {
-        if (config?.getBoolean("quit.enable") == true) {
-            val player = e.player
-            e.quitMessage(Hook.translateMiniMessage(Hook.translatePlaceholders(config.getString("quit.format") ?: "", player)))
-        }
+        if (config?.getBoolean("quit.enable") != true) return
+        val player = e.player
+        e.quitMessage(
+            Hook.translateMiniMessage(
+                Hook.translatePlaceholders(
+                    config.getString("quit.format") ?: "",
+                    player
+                )
+            )
+        )
     }
 
 }
