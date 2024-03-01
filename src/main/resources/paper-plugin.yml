@@ -16,3 +16,11 @@ commands:
   cac:
     description: CArtCore commands
     usage: /cac <args>
+permissions:
+  cartcore.*:
+    default: false
+    description: CArtCore all permission
+    children:
+      cartcore.command.reload:
+        default: op
+        description: CArtCore reload command permission

@@ -19,14 +19,16 @@ class Command(cmd: String) : Command(cmd) {
                     sender.sendMessage(Hook.translateMiniMessage("PlaceholderAPI: ${if (Environment.PlaceholderAPI) "<green>已安装</green>" else "<red>未安装</red>"}"))
                 }
                 "reload" -> run {
-                    sender.sendMessage(Hook.translateMiniMessage("<yellow>正在重载配置文件...</yellow>"))
-                    try {
-                        Configuration.reload()
-                        sender.sendMessage(Hook.translateMiniMessage("<green>重载完毕</green>"))
-                    } catch (e: Exception) {
-                        instance.logger.severe(e.stackTrace.toString())
-                        sender.sendMessage(Hook.translateMiniMessage("<red>重载失败，请查看控制台</red>"))
-                    }
+                    if (sender.hasPermission("cartcore.reload")) {
+                        sender.sendMessage(Hook.translateMiniMessage("<yellow>正在重载配置文件...</yellow>"))
+                        try {
+                            Configuration.reload()
+                            sender.sendMessage(Hook.translateMiniMessage("<green>重载完毕</green>"))
+                        } catch (e: Exception) {
+                            instance.logger.severe(e.stackTrace.toString())
+                            sender.sendMessage(Hook.translateMiniMessage("<red>重载失败，请查看控制台</red>"))
+                        }
+                    } else sender.sendMessage(Hook.translateMiniMessage("<red>你没有权限执行此命令</red>"))
                 }
                 else -> run {
                     sender.sendMessage(Hook.translateMiniMessage("<red>命令不存在</red>"))
@@ -44,6 +46,7 @@ class Command(cmd: String) : Command(cmd) {
             1 -> run {
                 sublist.clear()
                 sublist.add("version")
+                if (sender.hasPermission("cartcore.command.reload")) sublist.add("reload")
             }
         }
         return sublist
