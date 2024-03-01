@@ -43,6 +43,12 @@ interface Configuration {
             cs.CHAIN_COLLECTION =
                 YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
         }
+        @JvmStatic
+        fun reload() {
+            cs.CONFIG?.load(File("${instance.dataFolder}/${fs.CONFIG}"))
+            cs.WELCOME_MESSAGE?.load(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
+            cs.CHAIN_COLLECTION?.load(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
+        }
 
         private fun extract() {
             extractSingle(fs.CONFIG)
