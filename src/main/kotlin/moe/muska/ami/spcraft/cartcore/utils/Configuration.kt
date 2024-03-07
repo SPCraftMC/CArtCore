@@ -33,21 +33,36 @@ interface Configuration {
         private val cs = PacksConfiguration
         private val fs = PacksConfiguration.Files
 
+        /**
+         * 加载配置文件
+         */
         @JvmStatic
         fun load() {
-            extract()
+            try {
+                extract()
 
-            cs.CONFIG = YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.CONFIG}"))
-            cs.WELCOME_MESSAGE =
-                YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
-            cs.CHAIN_COLLECTION =
-                YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
+                cs.CONFIG = YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.CONFIG}"))
+                cs.WELCOME_MESSAGE =
+                    YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
+                cs.CHAIN_COLLECTION =
+                    YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
+            } catch (e: Exception) {
+                Logger.fatal("Load configuration failed!", e)
+            }
         }
+
+        /**
+         * 重载配置文件
+         */
         @JvmStatic
         fun reload() {
-            cs.CONFIG?.load(File("${instance.dataFolder}/${fs.CONFIG}"))
-            cs.WELCOME_MESSAGE?.load(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
-            cs.CHAIN_COLLECTION?.load(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
+            try {
+                cs.CONFIG?.load(File("${instance.dataFolder}/${fs.CONFIG}"))
+                cs.WELCOME_MESSAGE?.load(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
+                cs.CHAIN_COLLECTION?.load(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
+            } catch (e: Exception) {
+                Logger.exception(e)
+            }
         }
 
         private fun extract() {

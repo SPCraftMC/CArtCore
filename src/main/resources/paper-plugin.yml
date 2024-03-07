@@ -9,13 +9,6 @@ dependencies:
     PlaceholderAPI:
       load: AFTER
       required: false
-commands:
-  cartcore:
-    description: CArtCore commands
-    usage: /cartcore <args>
-  cac:
-    description: CArtCore commands
-    usage: /cac <args>
 permissions:
   cartcore.*:
     default: false
@@ -24,3 +17,6 @@ permissions:
       cartcore.command.reload:
         default: op
         description: CArtCore reload command permission
+      cartcore.command.warp:
+        default: false
+        description: CArtCore warp command permission

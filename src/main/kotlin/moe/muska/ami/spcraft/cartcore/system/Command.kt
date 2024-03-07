@@ -1,6 +1,7 @@
 package moe.muska.ami.spcraft.cartcore.system
 
 import moe.muska.ami.spcraft.cartcore.CArtCore
+import moe.muska.ami.spcraft.cartcore.packs.warp.OnCommand
 import moe.muska.ami.spcraft.cartcore.utils.Configuration
 import moe.muska.ami.spcraft.cartcore.utils.Environment
 import moe.muska.ami.spcraft.cartcore.utils.Hook
@@ -19,7 +20,7 @@ class Command(cmd: String) : Command(cmd) {
                     sender.sendMessage(Hook.translateMiniMessage("PlaceholderAPI: ${if (Environment.PlaceholderAPI) "<green>已安装</green>" else "<red>未安装</red>"}"))
                 }
                 "reload" -> run {
-                    if (sender.hasPermission("cartcore.reload")) {
+                    if (sender.hasPermission("cartcore.command.reload")) {
                         sender.sendMessage(Hook.translateMiniMessage("<yellow>正在重载配置文件...</yellow>"))
                         try {
                             Configuration.reload()
@@ -29,6 +30,11 @@ class Command(cmd: String) : Command(cmd) {
                             sender.sendMessage(Hook.translateMiniMessage("<red>重载失败，请查看控制台</red>"))
                         }
                     } else sender.sendMessage(Hook.translateMiniMessage("<red>你没有权限执行此命令</red>"))
+                }
+                "warp" -> run {
+                    if (sender.hasPermission("cartcore.command.warp")) {
+                        OnCommand().execute(sender, args.drop(0).toTypedArray())
+                    }
                 }
                 else -> run {
                     sender.sendMessage(Hook.translateMiniMessage("<red>命令不存在</red>"))
@@ -47,6 +53,7 @@ class Command(cmd: String) : Command(cmd) {
                 sublist.clear()
                 sublist.add("version")
                 if (sender.hasPermission("cartcore.command.reload")) sublist.add("reload")
+                if (sender.hasPermission("cartcore.command.warp")) sublist.add("warp")
             }
         }
         return sublist

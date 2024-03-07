@@ -1,11 +1,9 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     kotlin("jvm") version "1.9.22"
 }
 
 group = "moe.muska.ami.spcraft.crtcore"
-version = "1.0-SNAPSHOT"
+version = "1.0.1-SNAPSHOT"
 
 repositories {
     maven("https://lss233.littleservice.cn/repositories/minecraft")
@@ -18,6 +16,7 @@ dependencies {
     implementation("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
     implementation("me.clip:placeholderapi:2.11.5")
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
+    implementation("com.zaxxer:HikariCP:5.1.0")
     testImplementation(kotlin("test"))
 }
 
@@ -27,19 +26,19 @@ tasks.test {
 
 tasks.compileJava {
     options.encoding = "UTF-8"
-    sourceCompatibility = JavaVersion.VERSION_21.toString()
-    targetCompatibility = JavaVersion.VERSION_21.toString()
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
 }
 tasks.compileTestJava {
     options.encoding = "UTF-8"
-    sourceCompatibility = JavaVersion.VERSION_21.toString()
-    targetCompatibility = JavaVersion.VERSION_21.toString()
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
 }
 tasks.compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_21.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
 }
 tasks.compileTestKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_21.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
 }
 
 tasks.processResources {
@@ -60,7 +59,13 @@ tasks.create<Jar>("fatJar") {
     from(sourceMain.output)
 
     configurations.runtimeClasspath.get().filter {
-        it.name.startsWith("kotlin-stdlib")
+        val fatList = arrayOf(
+            "kotlin-stdlib",
+            "HikariCP"
+        )
+        var res = false
+        for (dep in fatList) if (it.name.startsWith(dep)) res = true
+        return@filter res
     }.forEach { jar ->
         from(zipTree(jar))
     }

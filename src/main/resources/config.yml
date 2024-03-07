@@ -1,0 +1,16 @@
+database:
+  type: sqlite
+  sqlite:
+    driver: "org.sqlite.JDBC"
+    path: "database.db"
+  mysql:
+    driver: "com.mysql.cj.jdbc.Driver"
+    host: "localhost"
+    port: 3306
+    database: "cacdb"
+    username: ""
+    password: ""
+    table_prefix: "cac"
+    keepalive:
+      enable: false
+      time: 30000
