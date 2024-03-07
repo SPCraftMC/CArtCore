@@ -18,5 +18,5 @@ permissions:
         default: op
         description: CArtCore reload command permission
       cartcore.command.warp:
-        default: false
+        default: op
         description: CArtCore warp command permission

@@ -1,16 +1,35 @@
+# 数据库
 database:
+  # 数据库类型
   type: sqlite
+  # SQLite
   sqlite:
+    # Driver类名
     driver: "org.sqlite.JDBC"
+    # 路径
     path: "database.db"
+  # MySQL
   mysql:
+    # Driver类名
     driver: "com.mysql.cj.jdbc.Driver"
+    # 地址
     host: "localhost"
+    # 端口
     port: 3306
+    # 数据库
     database: "cacdb"
+    # 用户名
     username: ""
+    # 密码
     password: ""
+    # 表格前缀
     table_prefix: "cac"
+    # Keepalive
     keepalive:
+      # 开关
       enable: false
+      # Keepalive时长
       time: 30000
+
+# DEBUG模式
+debug: false

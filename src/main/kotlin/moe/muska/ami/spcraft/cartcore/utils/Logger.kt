@@ -1,6 +1,7 @@
 package moe.muska.ami.spcraft.cartcore.utils
 
 import moe.muska.ami.spcraft.cartcore.CArtCore
+import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.plugin.Plugin
 import java.util.logging.Logger
 import kotlin.collections.ArrayList
@@ -10,6 +11,7 @@ interface Logger {
     companion object {
 
         private val instance: Plugin = CArtCore.plugin
+        private val config: FileConfiguration? = Configuration.PacksConfiguration.CONFIG
         private val defLgr: Logger = instance.logger
 
         /**
@@ -65,7 +67,7 @@ interface Logger {
          * @param a 内容
          */
         fun debug(a: String) {
-            defLgr.info("[DEBUG] $a")
+            if (config?.getBoolean("debug") == true) defLgr.info("[DEBUG] $a")
         }
 
         /**
@@ -73,7 +75,7 @@ interface Logger {
          * @param aL 输出内容列表
          */
         fun debug(aL: List<String>) {
-            for (a in aL) error(a)
+            for (a in aL) debug(a)
         }
 
         /**

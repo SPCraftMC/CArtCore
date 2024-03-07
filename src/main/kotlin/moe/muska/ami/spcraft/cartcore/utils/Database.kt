@@ -25,10 +25,12 @@ class Database {
         val stmt = hds.connection.createStatement()
         for (table in tables) {
             val sql = "CREATE TABLE IF NOT EXISTS $table (" +
-                    "player_uuid CHAR(35)," +
-                    "location CHAR(255)," +
-                    "create_at CHAR(255)," +
-                    "visit_times INT" +
+                    "id             INTEGER   PRIMARY KEY AUTOINCREMENT," +
+                    "player_uuid    CHAR(255)         NOT NULL," +
+                    "name           CHAR(255) PRIMARY KEY NOT NULL," +
+                    "location       CHAR(255)         NOT NULL," +
+                    "create_at      CHAR(255)         NOT NULL," +
+                    "visit_times    INT               NOT NULL" +
                     ");"
             stmt.execute(sql)
         }
