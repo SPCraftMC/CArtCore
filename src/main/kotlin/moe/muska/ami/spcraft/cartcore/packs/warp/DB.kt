@@ -17,13 +17,17 @@ class DB {
 
     fun add(playerUUID: UUID, location: Location, name: String) {
         val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(Date())
-        val sql = "INSERT INTO $table (player_uuid, name, location, create_at, visit_times) VALUES (?, ?, ?, ?, ?)"
+        val sql = "INSERT INTO $table (player_uuid, name, location_x, location_y, location_z, location_pitch, location_world, create_at, visit_times) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
         val pstmt = dbPool.prepareStatement(sql)
         pstmt.setString(1, playerUUID.toString())
         pstmt.setString(2, name)
-        pstmt.setString(3, location.serialize().toString())
-        pstmt.setString(4, time)
-        pstmt.setInt(5, 0)
+        pstmt.setDouble(3, location.x)
+        pstmt.setDouble(4, location.y)
+        pstmt.setDouble(5, location.z)
+        pstmt.setFloat(6, location.pitch)
+        pstmt.setString(7, location.world.name)
+        pstmt.setString(8, time)
+        pstmt.setInt(9, 0)
         pstmt.executeUpdate()
     }
 
@@ -34,26 +38,29 @@ class DB {
         pstmt.executeUpdate()
     }
 
-    fun get(name: String): Location {
+    fun get(name: String): Location? {
         val sql = "SELECT * FROM $table WHERE name = ?"
         val pstmt = dbPool.prepareStatement(sql)
         pstmt.setString(1, name)
         val rs = pstmt.executeQuery()
-        val locationStr = rs.getString("location")
-        val worldStartIndex = locationStr.indexOf("world=") + 6
-        val worldEndIndex = locationStr.indexOf("}", startIndex = worldStartIndex)
-        val worldStr = locationStr.substring(worldStartIndex, worldEndIndex)
-
-        val keyValuePairs = locationStr.substring(locationStr.indexOf("{") + 1, locationStr.indexOf("}"))
-            .split(",")
-            .associate {
-                val (key, value) = it.split("=")
-                key.trim() to value
-            }
-
-        val map = mapOf("world" to worldStr) + keyValuePairs
-        Logger.debug(map.toString())
-        return Location.deserialize(map)
+        if (rs.next()) {
+            val x = rs.getDouble("location_x")
+            val y = rs.getDouble("location_y")
+            val z = rs.getDouble("location_z")
+            val pitch = rs.getFloat("location_pitch")
+            val world = rs.getString("location_world")
+            val map: Map<String, Any?> = mapOf(
+                "x" to x,
+                "y" to y,
+                "z" to z,
+                "pitch" to pitch,
+                "world" to world
+            )
+            Logger.debug(map.toString())
+            rs.close()
+            return Location.deserialize(map)
+        }
+        return null
     }
 
 }

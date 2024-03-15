@@ -10,7 +10,7 @@ import java.sql.Connection
 
 class Database {
 
-    private val instance: Plugin = CArtCore.plugin
+//    private val instance: Plugin = CArtCore.plugin
 
     fun initTable() {
         val mySQLTablePrefix = config?.getString("database.mysql.table_prefix")
@@ -27,8 +27,12 @@ class Database {
             val sql = "CREATE TABLE IF NOT EXISTS $table (" +
                     "id             INTEGER   PRIMARY KEY AUTOINCREMENT," +
                     "player_uuid    CHAR(255)         NOT NULL," +
-                    "name           CHAR(255) PRIMARY KEY NOT NULL," +
-                    "location       CHAR(255)         NOT NULL," +
+                    "name           CHAR(255)         NOT NULL UNIQUE," +
+                    "location_x     DOUBLE            NOT NULL," +
+                    "location_y     DOUBLE            NOT NULL," +
+                    "location_z     DOUBLE            NOT NULL," +
+                    "location_pitch FLOAT             NOT NULL," +
+                    "location_world CHAR(255)         NOT NULL," +
                     "create_at      CHAR(255)         NOT NULL," +
                     "visit_times    INT               NOT NULL" +
                     ");"

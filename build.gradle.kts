@@ -17,6 +17,7 @@ dependencies {
     implementation("me.clip:placeholderapi:2.11.5")
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
     implementation("com.zaxxer:HikariCP:5.1.0")
+//    implementation("com.alibaba:fastjson:2.0.31")
     testImplementation(kotlin("test"))
 }
 
@@ -61,7 +62,7 @@ tasks.create<Jar>("fatJar") {
     configurations.runtimeClasspath.get().filter {
         val fatList = arrayOf(
             "kotlin-stdlib",
-            "HikariCP"
+            "HikariCP",
         )
         var res = false
         for (dep in fatList) if (it.name.startsWith(dep)) res = true

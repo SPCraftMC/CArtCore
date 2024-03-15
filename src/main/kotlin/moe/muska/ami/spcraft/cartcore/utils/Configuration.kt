@@ -13,6 +13,7 @@ interface Configuration {
                 const val CONFIG = "config.yml"
                 const val WELCOME_MESSAGE = "configs/welcome_message.yml"
                 const val CHAIN_COLLECTION = "configs/chain_collection.yml"
+                const val WARP = "configs/warp.yml"
             }
         }
 
@@ -25,6 +26,9 @@ interface Configuration {
 
             @JvmStatic
             var CHAIN_COLLECTION: FileConfiguration? = null
+
+            @JvmStatic
+            var WARP: FileConfiguration? = null
         }
     }
 
@@ -46,6 +50,7 @@ interface Configuration {
                     YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
                 cs.CHAIN_COLLECTION =
                     YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
+                cs.WARP = YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.WARP}"))
             } catch (e: Exception) {
                 Logger.fatal("Load configuration failed!", e)
             }
@@ -60,6 +65,7 @@ interface Configuration {
                 cs.CONFIG?.load(File("${instance.dataFolder}/${fs.CONFIG}"))
                 cs.WELCOME_MESSAGE?.load(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
                 cs.CHAIN_COLLECTION?.load(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
+                cs.WARP?.load(File("${instance.dataFolder}/${fs.WARP}"))
             } catch (e: Exception) {
                 Logger.exception(e)
             }
@@ -69,6 +75,7 @@ interface Configuration {
             extractSingle(fs.CONFIG)
             extractSingle(fs.WELCOME_MESSAGE)
             extractSingle(fs.CHAIN_COLLECTION)
+            extractSingle(fs.WARP)
         }
 
         private fun extractSingle(path: String) {
