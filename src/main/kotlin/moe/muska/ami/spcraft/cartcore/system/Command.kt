@@ -1,7 +1,6 @@
 package moe.muska.ami.spcraft.cartcore.system
 
 import moe.muska.ami.spcraft.cartcore.CArtCore
-import moe.muska.ami.spcraft.cartcore.packs.warp.OnCommand
 import moe.muska.ami.spcraft.cartcore.utils.Configuration
 import moe.muska.ami.spcraft.cartcore.utils.Environment
 import moe.muska.ami.spcraft.cartcore.utils.Hook
@@ -10,7 +9,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.Plugin
 
-class Command(cmd: String) : Command(cmd) {
+open class Command(cmd: String) : Command(cmd) {
 
     private val instance: Plugin = CArtCore.plugin
     override fun execute(sender: CommandSender, p1: String, args: Array<out String>?): Boolean {
@@ -26,6 +25,7 @@ class Command(cmd: String) : Command(cmd) {
                         if (sender.hasPermission("cartcore.command.reload")) {
                             sender.sendMessage(Hook.translateMiniMessage("<yellow>正在重载配置文件...</yellow>"))
                             try {
+                                // 重载配置
                                 Configuration.reload()
                                 sender.sendMessage(Hook.translateMiniMessage("<green>重载完毕</green>"))
                             } catch (e: Exception) {
@@ -35,10 +35,10 @@ class Command(cmd: String) : Command(cmd) {
                         } else sender.sendMessage(Hook.translateMiniMessage("<red>你没有权限执行此命令</red>"))
                     }
 
-                    "warp" -> run {
-                        if (sender.hasPermission("cartcore.command.warp")) {
-                            OnCommand().execute(sender, args.drop(1).toTypedArray())
-                        }
+                    "teleport" -> run {
+                        if (sender.hasPermission("cartcore.command.teleport")) {
+                            moe.muska.ami.spcraft.cartcore.packs.teleport.OnCommand().execute(sender, args.drop(1).toTypedArray())
+                        } else sender.sendMessage(Hook.translateMiniMessage("<red>你没有权限执行此命令</red>"))
                     }
 
                     else -> run {
@@ -63,6 +63,7 @@ class Command(cmd: String) : Command(cmd) {
                 sublist.add("version")
                 if (sender.hasPermission("cartcore.command.reload")) sublist.add("reload")
                 if (sender.hasPermission("cartcore.command.warp")) sublist.add("warp")
+                if (sender.hasPermission("cartcore.command.teleport")) sublist.add("teleport")
             }
         }
         return sublist

@@ -1,0 +1,5 @@
+# 传送
+# 大厅指令
+lobby: false
+# 选择切换指令
+switch: false

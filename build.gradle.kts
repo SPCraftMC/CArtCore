@@ -3,10 +3,10 @@ plugins {
 }
 
 group = "moe.muska.ami.spcraft.crtcore"
-version = "1.0.1-SNAPSHOT"
+version = "1.0.2-SNAPSHOT"
 
 repositories {
-    maven("https://lss233.littleservice.cn/repositories/minecraft")
+    maven("https://maven.fastmirror.net/repositories/minecraft")
     maven("https://maven.aliyun.com/nexus/content/groups/public/")
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
