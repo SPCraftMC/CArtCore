@@ -1,2 +1,5 @@
 # 开关
 enable: false
+
+# 每次签到要给予玩家多少金钱
+reward: 2000

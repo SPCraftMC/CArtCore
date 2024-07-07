@@ -8,12 +8,14 @@ class Environment {
         private val instance: Plugin = CArtCore.plugin
 
         var PlaceholderAPI: Boolean = instance.server.pluginManager.getPlugin("PlaceholderAPI") != null
+        var Vault: Boolean = instance.server.pluginManager.getPlugin("Vault") != null
 
         /**
          * 重载环境
          */
         fun reload() {
             PlaceholderAPI = instance.server.pluginManager.getPlugin("PlaceholderAPI") != null
+            Vault = instance.server.pluginManager.getPlugin("Vault") != null
         }
     }
 }

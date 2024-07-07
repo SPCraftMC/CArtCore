@@ -19,6 +19,7 @@ open class Command(cmd: String) : Command(cmd) {
                     "version" -> run {
                         sender.sendMessage(Hook.translateMiniMessage("<blue>CArtCore</blue> version <yellow>${instance.description.version}</yellow>, made with <red>❤</red>"))
                         sender.sendMessage(Hook.translateMiniMessage("PlaceholderAPI: ${if (Environment.PlaceholderAPI) "<green>已安装</green>" else "<red>未安装</red>"}"))
+                        sender.sendMessage(Hook.translateMiniMessage("Vault: ${if (Environment.Vault) "<green>已安装</green>" else "<red>未安装</red>"}"))
                     }
 
                     "reload" -> run {
@@ -28,16 +29,11 @@ open class Command(cmd: String) : Command(cmd) {
                                 // 重载配置
                                 Configuration.reload()
                                 sender.sendMessage(Hook.translateMiniMessage("<green>重载完毕</green>"))
+                                sender.sendMessage(Hook.translateMiniMessage("<gray>注意，若您动态安装了依赖，这些环境信息将不会被重载，要应用这些更改，请重启服务器。</gray>"))
                             } catch (e: Exception) {
                                 instance.logger.severe(e.stackTrace.toString())
                                 sender.sendMessage(Hook.translateMiniMessage("<red>重载失败，请查看控制台</red>"))
                             }
-                        } else sender.sendMessage(Hook.translateMiniMessage("<red>你没有权限执行此命令</red>"))
-                    }
-
-                    "teleport" -> run {
-                        if (sender.hasPermission("cartcore.command.teleport")) {
-                            moe.muska.ami.spcraft.cartcore.packs.teleport.OnCommand().execute(sender, args.drop(1).toTypedArray())
                         } else sender.sendMessage(Hook.translateMiniMessage("<red>你没有权限执行此命令</red>"))
                     }
 
@@ -62,8 +58,6 @@ open class Command(cmd: String) : Command(cmd) {
                 sublist.clear()
                 sublist.add("version")
                 if (sender.hasPermission("cartcore.command.reload")) sublist.add("reload")
-                if (sender.hasPermission("cartcore.command.warp")) sublist.add("warp")
-                if (sender.hasPermission("cartcore.command.teleport")) sublist.add("teleport")
             }
         }
         return sublist

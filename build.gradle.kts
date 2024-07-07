@@ -17,6 +17,9 @@ dependencies {
     implementation("me.clip:placeholderapi:2.11.5")
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
     implementation("com.zaxxer:HikariCP:5.1.0")
+    implementation("com.github.MilkBowl:VaultAPI:1.7")
+    implementation("org.hibernate:hibernate-core:5.2.16.Final")
+    implementation("org.hibernate:hibernate-entitymanager:5.2.16.Final")
 //    implementation("com.alibaba:fastjson:2.0.31")
     testImplementation(kotlin("test"))
 }
@@ -63,6 +66,8 @@ tasks.create<Jar>("fatJar") {
         val fatList = arrayOf(
             "kotlin-stdlib",
             "HikariCP",
+            "hibernate-core",
+            "hibernate-entitymanager",
         )
         var res = false
         for (dep in fatList) if (it.name.startsWith(dep)) res = true
