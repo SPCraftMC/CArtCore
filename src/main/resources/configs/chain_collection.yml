@@ -1,3 +1,13 @@
+# 低耐久保护
+damage-protection:
+  # 开关
+  enable: true
+  # 工具剩余多少耐久不再触发连锁
+  value: 10
+
+# 忽略附魔
+ignore-enchant: false
+
 # 树木连锁
 tree:
   # 开关

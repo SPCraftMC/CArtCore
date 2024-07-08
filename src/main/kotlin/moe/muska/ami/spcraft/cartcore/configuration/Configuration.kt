@@ -1,6 +1,7 @@
-package moe.muska.ami.spcraft.cartcore.utils
+package moe.muska.ami.spcraft.cartcore.configuration
 
 import moe.muska.ami.spcraft.cartcore.CArtCore
+import moe.muska.ami.spcraft.cartcore.utils.Logger
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
@@ -13,7 +14,7 @@ interface Configuration {
                 const val CONFIG = "config.yml"
                 const val WELCOME_MESSAGE = "configs/welcome_message.yml"
                 const val CHAIN_COLLECTION = "configs/chain_collection.yml"
-                const val TELEPORT = "configs/teleport.yml"
+                const val SIGN = "configs/sign.yml"
             }
         }
 
@@ -28,7 +29,7 @@ interface Configuration {
             var CHAIN_COLLECTION: FileConfiguration? = null
 
             @JvmStatic
-            var TELEPORT: FileConfiguration? = null
+            var SIGN: FileConfiguration? = null
         }
     }
 
@@ -50,7 +51,7 @@ interface Configuration {
                     YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
                 cs.CHAIN_COLLECTION =
                     YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
-                cs.TELEPORT = YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.TELEPORT}"))
+                cs.SIGN = YamlConfiguration.loadConfiguration(File("${instance.dataFolder}/${fs.SIGN}"))
             } catch (e: Exception) {
                 Logger.fatal("Load configuration failed!", e)
             }
@@ -65,7 +66,7 @@ interface Configuration {
                 cs.CONFIG?.load(File("${instance.dataFolder}/${fs.CONFIG}"))
                 cs.WELCOME_MESSAGE?.load(File("${instance.dataFolder}/${fs.WELCOME_MESSAGE}"))
                 cs.CHAIN_COLLECTION?.load(File("${instance.dataFolder}/${fs.CHAIN_COLLECTION}"))
-                cs.TELEPORT?.load(File("${instance.dataFolder}/${fs.TELEPORT}"))
+                cs.SIGN?.load(File("${instance.dataFolder}/${fs.SIGN}"))
             } catch (e: Exception) {
                 Logger.exception(e)
             }
@@ -75,7 +76,7 @@ interface Configuration {
             extractSingle(fs.CONFIG)
             extractSingle(fs.WELCOME_MESSAGE)
             extractSingle(fs.CHAIN_COLLECTION)
-            extractSingle(fs.TELEPORT)
+            extractSingle(fs.SIGN)
         }
 
         private fun extractSingle(path: String) {

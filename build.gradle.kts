@@ -13,13 +13,14 @@ repositories {
 }
 
 dependencies {
-    implementation("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
+    implementation("io.papermc.paper:paper-api:1.20-R0.1-SNAPSHOT")
     implementation("me.clip:placeholderapi:2.11.5")
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
     implementation("com.zaxxer:HikariCP:5.1.0")
     implementation("com.github.MilkBowl:VaultAPI:1.7")
     implementation("org.hibernate:hibernate-core:5.2.16.Final")
     implementation("org.hibernate:hibernate-entitymanager:5.2.16.Final")
+    implementation("com.alibaba.fastjson2:fastjson2-kotlin:2.0.51")
 //    implementation("com.alibaba:fastjson:2.0.31")
     testImplementation(kotlin("test"))
 }
@@ -57,29 +58,30 @@ tasks.processResources {
     }
 }
 
-tasks.create<Jar>("fatJar") {
-    duplicatesStrategy = DuplicatesStrategy.FAIL
-    val sourceMain = java.sourceSets["main"]
-    from(sourceMain.output)
-
-    configurations.runtimeClasspath.get().filter {
-        val fatList = arrayOf(
-            "kotlin-stdlib",
-            "HikariCP",
-            "hibernate-core",
-            "hibernate-entitymanager",
-        )
-        var res = false
-        for (dep in fatList) if (it.name.startsWith(dep)) res = true
-        return@filter res
-    }.forEach { jar ->
-        from(zipTree(jar))
-    }
-}
+//tasks.create<Jar>("fatJar") {
+//    duplicatesStrategy = DuplicatesStrategy.FAIL
+//    val sourceMain = java.sourceSets["main"]
+//    from(sourceMain.output)
+//
+//    configurations.runtimeClasspath.get().filter {
+//        val fatList = arrayOf(
+//            "kotlin-stdlib",
+//            "HikariCP",
+//            "hibernate-core",
+//            "hibernate-entitymanager",
+//            "fastjson2-kotlin"
+//        )
+//        var res = false
+//        for (dep in fatList) if (it.name.startsWith(dep)) res = true
+//        return@filter res
+//    }.forEach { jar ->
+//        from(zipTree(jar))
+//    }
+//}
 
 tasks.build {
     dependsOn(
         tasks.processResources,
-        "fatJar"
+//        "fatJar"
     )
 }

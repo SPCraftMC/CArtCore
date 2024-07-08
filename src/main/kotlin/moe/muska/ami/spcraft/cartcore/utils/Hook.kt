@@ -3,12 +3,15 @@ package moe.muska.ami.spcraft.cartcore.utils
 import me.clip.placeholderapi.PlaceholderAPI
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
+import net.milkbowl.vault.economy.Economy
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
 class Hook {
 
     companion object {
+
+        var econ: Economy? = null
 
         /**
          * 转换占位符

@@ -1,6 +1,6 @@
 package moe.muska.ami.spcraft.cartcore.packs.welcome_message
 
-import moe.muska.ami.spcraft.cartcore.utils.Configuration
+import moe.muska.ami.spcraft.cartcore.configuration.Configuration
 import moe.muska.ami.spcraft.cartcore.utils.Hook
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.event.EventHandler

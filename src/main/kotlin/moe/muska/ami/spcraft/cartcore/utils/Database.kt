@@ -3,11 +3,12 @@ package moe.muska.ami.spcraft.cartcore.utils
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import moe.muska.ami.spcraft.cartcore.CArtCore
+import moe.muska.ami.spcraft.cartcore.configuration.Configuration
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.plugin.Plugin
 import java.sql.Connection
 
-
+@Deprecated("")
 class Database {
 
 //    private val instance: Plugin = CArtCore.plugin
@@ -47,6 +48,7 @@ class Database {
     companion object {
         private val instance: Plugin = CArtCore.plugin
         private val config: FileConfiguration? = Configuration.PacksConfiguration.CONFIG
+
         @JvmStatic
         private lateinit var hds: HikariDataSource
 

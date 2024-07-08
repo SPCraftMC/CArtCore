@@ -1,21 +1,19 @@
 package moe.muska.ami.spcraft.cartcore;
 
+import moe.muska.ami.spcraft.cartcore.configuration.Configuration;
 import moe.muska.ami.spcraft.cartcore.packs.CommandRegister;
 import moe.muska.ami.spcraft.cartcore.packs.ListenerRegister;
-import moe.muska.ami.spcraft.cartcore.utils.Configuration;
-//import moe.muska.ami.spcraft.cartcore.utils.Database;
 import moe.muska.ami.spcraft.cartcore.utils.Environment;
+import moe.muska.ami.spcraft.cartcore.utils.Hook;
 import moe.muska.ami.spcraft.cartcore.utils.Logger;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CArtCore extends JavaPlugin {
 
     public static Plugin plugin;
-
-    private static Economy econ = null;
 
     @Override
     public void onEnable() {
@@ -47,10 +45,6 @@ public final class CArtCore extends JavaPlugin {
         if (rsp == null) {
             return;
         }
-        econ = rsp.getProvider();
-    }
-
-    public static Economy getEconomy() {
-        return econ;
+        Hook.Companion.setEcon(rsp.getProvider());
     }
 }

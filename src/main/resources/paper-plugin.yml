@@ -4,9 +4,13 @@ main: moe.muska.ami.spcraft.cartcore.CArtCore
 api-version: '1.19'
 authors: [ Muska_Ami ]
 description: SPCraftMC 2.0 CloudArt Core
+loader: moe.muska.ami.spcraft.cartcore.CArtCoreLoader
 dependencies:
   server:
     PlaceholderAPI:
+      load: AFTER
+      required: false
+    Vault:
       load: AFTER
       required: false
 permissions:

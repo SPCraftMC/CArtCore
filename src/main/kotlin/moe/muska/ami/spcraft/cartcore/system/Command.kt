@@ -1,7 +1,7 @@
 package moe.muska.ami.spcraft.cartcore.system
 
 import moe.muska.ami.spcraft.cartcore.CArtCore
-import moe.muska.ami.spcraft.cartcore.utils.Configuration
+import moe.muska.ami.spcraft.cartcore.configuration.Configuration
 import moe.muska.ami.spcraft.cartcore.utils.Environment
 import moe.muska.ami.spcraft.cartcore.utils.Hook
 import moe.muska.ami.spcraft.cartcore.utils.Logger

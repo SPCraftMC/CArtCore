@@ -1,7 +1,7 @@
 package moe.muska.ami.spcraft.cartcore.packs.chain_collection
 
 import moe.muska.ami.spcraft.cartcore.CArtCore
-import moe.muska.ami.spcraft.cartcore.utils.Configuration
+import moe.muska.ami.spcraft.cartcore.configuration.Configuration
 import org.bukkit.GameMode
 import org.bukkit.block.Block
 import org.bukkit.configuration.file.FileConfiguration
@@ -12,8 +12,6 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.plugin.Plugin
 
 class OnBlockBreak : Listener {
-
-    private val instance: Plugin = CArtCore.plugin
 
     private val config: FileConfiguration? = Configuration.PacksConfiguration.CHAIN_COLLECTION
     private val target: MutableList<String> = ArrayList()

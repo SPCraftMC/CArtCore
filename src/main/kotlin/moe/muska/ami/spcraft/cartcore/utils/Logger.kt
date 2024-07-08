@@ -1,10 +1,10 @@
 package moe.muska.ami.spcraft.cartcore.utils
 
 import moe.muska.ami.spcraft.cartcore.CArtCore
+import moe.muska.ami.spcraft.cartcore.configuration.Configuration
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.plugin.Plugin
 import java.util.logging.Logger
-import kotlin.collections.ArrayList
 
 interface Logger {
 
