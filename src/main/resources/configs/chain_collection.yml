@@ -86,3 +86,52 @@ ore:
       - "IRON_PICKAXE"
       - "STONE_PICKAXE"
       - "WOODEN_PICKAXE"
+
+# 挖掘方块获得的经验
+experience:
+  # 可自行添加，e.g.
+  # OAK_LEAVES:
+  #   items:
+  #     - "OAK_LEAVES"
+  #   min: 0
+  #   max: 1
+  COAL:
+    items:
+      - "COAL_ORE"
+      - "DEEPSLATE_COAL_ORE"
+    min: 0
+    max: 2
+  LAPIS:
+    items:
+      - "LAPIS_ORE"
+      - "DEEPSLATE_LAPIS_ORE"
+    min: 2
+    max: 5
+  REDSTONE:
+    items:
+      - "REDSTONE_ORE"
+      - "DEEPSLATE_REDSTONE_ORE"
+    min: 1
+    max: 5
+  DIAMOND:
+    items:
+      - "DIAMOND_ORE"
+      - "DEEPSLATE_DIAMOND_ORE"
+    min: 3
+    max: 7
+  EMERALD:
+    items:
+      - "EMERALD_ORE"
+      - "DEEPSLATE_EMERALD_ORE"
+    min: 3
+    max: 7
+  NETHER_QUARTZ:
+    items:
+      - "NETHER_QUARTZ_ORE"
+    min: 2
+    max: 5
+  NETHER_GOLD:
+    items:
+      - "NETHER_GOLD_ORE"
+    min: 0
+    max: 1

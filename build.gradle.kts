@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "moe.muska.ami.spcraft.crtcore"
-version = "1.0.2-SNAPSHOT"
+version = "1.0.3-SNAPSHOT"
 
 repositories {
     maven("https://maven.fastmirror.net/repositories/minecraft")

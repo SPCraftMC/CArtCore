@@ -1,9 +1,9 @@
 name: CArtCore
 version: '${version}'
 main: moe.muska.ami.spcraft.cartcore.CArtCore
-api-version: '1.19'
+api-version: '1.20'
 authors: [ Muska_Ami ]
-description: SPCraftMC 2.0 CloudArt Core
+description: SPCraftMC 2 CloudArt Core
 loader: moe.muska.ami.spcraft.cartcore.CArtCoreLoader
 dependencies:
   server:
